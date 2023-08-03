@@ -110,7 +110,7 @@ function MarketValueChangesTable() {
         pageSizeOptions={[10, 20, 50]}
         initialState={{
           sorting: { sortModel: [{ field: 'oneDayAgo', sort: 'desc' }] },
-          pagination: { paginationModel: { page: 1, pageSize: 10 } },
+          pagination: { paginationModel: { page: 0, pageSize: 10 } },
         }}
         slots={{
           toolbar: CustomToolBar,

@@ -234,7 +234,7 @@ function LineupPlanner() {
         pageSizeOptions={[18]}
         initialState={{
           sorting: { sortModel: [{ field: 'marketValue', sort: 'desc' }] },
-          pagination: { paginationModel: { page: 1, pageSize: 18 } },
+          pagination: { paginationModel: { page: 0, pageSize: 18 } },
         }}
         slots={{
           toolbar: CustomToolBar,
