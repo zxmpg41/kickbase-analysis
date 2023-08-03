@@ -23,6 +23,8 @@ def get_market_players(manager):
                             'position': constants.POSITIONS[player.position],
                             'points': player.totalPoints,
                             'averagePoints': player.averagePoints,
+                            'offerValue': player.offers[0].price if hasattr(player.offers, "__len__") else None,
+                            'offerName': player.offers[0].userName if hasattr(player.offers, "__len__") else None,
                             'trend': player_stats['mvTrend']}),
 
     return players

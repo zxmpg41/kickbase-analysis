@@ -21,13 +21,19 @@ import LineupPlanner from './components/LineupPlanner'
 import HelpIcon from './components/HelpIcon'
 import MarketValueChangesTable from './components/MarketValueChangesTable'
 import TeamValueLineChart from './components/TeamValueLineChart'
+import Cookie from 'js-cookie'
 
 const darkTheme = createTheme({ palette: { mode: 'dark' } })
 const lightTheme = createTheme({ palette: { mode: 'light' } })
 
 function App() {
   const [selectedTab, setSelectedTab] = useState('1')
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false)
+  const [darkModeEnabled, setDarkModeEnabled] = useState(Cookie.get('darkMode'))
+
+  const changeTheme = (e) => {
+    Cookie.set('darkMode', e.target.checked)
+    setDarkModeEnabled(e.target.checked)
+  }
 
   return (
     <ThemeProvider theme={darkModeEnabled ? darkTheme : lightTheme}>
@@ -65,7 +71,7 @@ function App() {
                     control={
                       <Switch
                         checked={darkModeEnabled}
-                        onChange={(e) => setDarkModeEnabled(e.target.checked)}
+                        onChange={changeTheme}
                       />
                     }
                     label={

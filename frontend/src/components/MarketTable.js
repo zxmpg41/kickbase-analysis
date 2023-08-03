@@ -1,11 +1,14 @@
 import { DataGrid } from '@mui/x-data-grid'
-import { Box } from '@mui/material'
+import { Box, Tooltip } from '@mui/material'
 
 import { currencyFormatter } from './SharedConstants'
 import { CustomToolBar, getRelativeTime } from './utils'
 
 import data from '../data/market.json'
 import mw_changes from '../data/mw_changes.json'
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 data = data.filter((entry) => new Date(entry.expiration) - new Date() > 0)
 
@@ -103,6 +106,50 @@ function MarketTable() {
       align: 'right',
       valueFormatter: ({ value }) => getRelativeTime(value),
     },
+    {
+      field: 'offer',
+      headerName: 'Angebot',
+      flex: 1,
+      headerAlign: 'right',
+      align: 'right',
+      renderCell: ({ formattedValue }) => {
+        // return (
+        //   <Box>
+        //     <Tooltip title={formattedValue.name} arrow>
+        //       {currencyFormatter.format(Number(formattedValue.value))}
+        //     </Tooltip>
+        //   </Box>
+        // )
+        const style = {
+          backgroundImage: 'linear-gradient(white, white)',
+          borderRadius: '50%',
+        }
+        const content =
+          formattedValue.name === 'Kevin' ? (
+            <CheckCircleIcon
+              sx={{
+                color: 'green',
+                ...style,
+              }}
+            />
+          ) : (
+            <CancelIcon sx={{ color: 'darkred', ...style }} />
+          )
+        return (
+          <Box
+            sx={{
+              ':hover': {
+                cursor: 'pointer',
+              },
+            }}
+          >
+            <Tooltip title="Angebot abgegeben (Kevin)" arrow>
+              {content}
+            </Tooltip>
+          </Box>
+        )
+      },
+    },
   ]
 
   const getPreviousValues = (playerId) => {
@@ -126,6 +173,7 @@ function MarketTable() {
       date: new Date(row.expiration),
       points: row.points,
       averagePoints: row.averagePoints,
+      offer: { value: row.offerValue, name: row.offerName },
     }
   })
 
@@ -145,6 +193,9 @@ function MarketTable() {
         initialState={{
           sorting: { sortModel: [{ field: 'date', sort: 'asc' }] },
           pagination: { paginationModel: { page: 0, pageSize: 10 } },
+          columnVisibilityModel: {
+            offer: false,
+          },
         }}
         slots={{
           toolbar: CustomToolBar,
