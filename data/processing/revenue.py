@@ -6,7 +6,9 @@ from dateutil import parser
 from utility.constants import MATCH_DAYS
 from utility.constants import TIMEZONE_DE
 from utility.constants import CUTOFF_DATE
+from utility.util import timing_decorator
 
+@timing_decorator
 def calculate_revenue_data_daily(manager, turnovers):
     user_transfer_revenue = {user.name: [] for user in manager.users}
     for buy, sell in turnovers:
@@ -36,7 +38,7 @@ def calculate_revenue_data_daily(manager, turnovers):
 
     return data
 
-
+@timing_decorator
 def calculate_team_value_per_match_day(manager, user_id: str):
     # Get last match day
     last_match_day = manager.api.league_stats(manager.league).current_day

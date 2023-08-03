@@ -4,8 +4,9 @@ from dateutil import parser
 
 from utility.constants import TIMEZONE_DE
 from utility.constants import CUTOFF_DATE
+from utility.util import timing_decorator
 
-
+@timing_decorator
 def get_turnovers(manager, user_id: int, user_name: str):
     transfers = []
 

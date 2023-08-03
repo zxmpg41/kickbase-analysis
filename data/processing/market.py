@@ -3,8 +3,9 @@ from datetime import datetime, timedelta, timezone
 from pytz import timezone
 
 from utility import constants
+from utility.util import timing_decorator
 
-
+@timing_decorator
 def get_market_players(manager):
     players = []
 
@@ -20,6 +21,8 @@ def get_market_players(manager):
                             'expiration': expiration_time,
                             'team_id': player.team_id,
                             'position': constants.POSITIONS[player.position],
-                            'trend': player_stats['mvTrend']})
+                            'points': player.totalPoints,
+                            'averagePoints': player.averagePoints,
+                            'trend': player_stats['mvTrend']}),
 
     return players

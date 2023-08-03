@@ -4,8 +4,9 @@ import pytz
 from dateutil import parser
 
 from utility import constants
+from utility.util import timing_decorator
 
-
+@timing_decorator
 def get_taken_players(manager, user_id: int, user_name: str):
     taken_players = []
 
@@ -41,7 +42,7 @@ def get_taken_players(manager, user_id: int, user_name: str):
 
     return taken_players
 
-
+@timing_decorator
 def get_free_players(manager, taken_players):
     free_players = []
 
@@ -61,7 +62,7 @@ def get_free_players(manager, taken_players):
 
     return free_players
 
-
+@timing_decorator
 def get_players_mw_change(manager):
     players = []
 

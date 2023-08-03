@@ -1,6 +1,7 @@
 import argparse
 import json
 from datetime import datetime
+import time
 
 from dateutil.tz import tzlocal
 
@@ -12,6 +13,7 @@ from processing.revenue import calculate_team_value_per_match_day
 from processing.turnovers import get_turnovers
 from utility.api_manager import ApiManager
 from utility.util import json_serialize_datetime
+from utility.util import timing_decorator
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ignore', nargs="*", type=str, default=[])
@@ -19,7 +21,7 @@ parser.add_argument('--kbpw', required=True, type=str)
 parser.add_argument('--kbuser', required=True, type=str)
 args = parser.parse_args()
 
-
+@timing_decorator
 def main():
     manager = ApiManager(args)
 

@@ -36,6 +36,15 @@ function MarketTable() {
       flex: 1,
     },
     {
+      field: 'points',
+      headerName: 'Punkte',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
+      valueGetter: ({ row }) =>
+        `${row.averagePoints} / ${row.points.toLocaleString('de')}`,
+    },
+    {
       field: 'price',
       headerName: 'Preis',
       type: 'number',
@@ -115,6 +124,8 @@ function MarketTable() {
       twoDaysAgo: previousValues?.two_days_ago || 0,
       threeDaysAgo: previousValues?.three_days_ago || 0,
       date: new Date(row.expiration),
+      points: row.points,
+      averagePoints: row.averagePoints,
     }
   })
 
