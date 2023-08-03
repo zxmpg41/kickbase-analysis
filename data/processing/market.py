@@ -13,7 +13,8 @@ def get_market_players(manager):
             player_stats = manager.get(f'/leagues/{manager.league.id}/players/{player.id}/stats')
 
             expiration_time = (datetime.now(timezone('Europe/Berlin')) + timedelta(seconds=int(player.expiry)))
-            players.append({'first_name': player.first_name,
+            players.append({'player_id': player.id,
+                            'first_name': player.first_name,
                             'last_name': player.last_name,
                             'price': player.price,
                             'expiration': expiration_time,

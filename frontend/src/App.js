@@ -20,6 +20,7 @@ import TransferRevenueLineChart from './components/TransferRevenueLineChart'
 import LineupPlanner from './components/LineupPlanner'
 import HelpIcon from './components/HelpIcon'
 import MarketValueChangesTable from './components/MarketValueChangesTable'
+import TeamValueLineChart from './components/TeamValueLineChart'
 
 const darkTheme = createTheme({ palette: { mode: 'dark' } })
 const lightTheme = createTheme({ palette: { mode: 'light' } })
@@ -31,14 +32,13 @@ function App() {
   return (
     <ThemeProvider theme={darkModeEnabled ? darkTheme : lightTheme}>
       <CssBaseline />
-      <div style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div style={{ width: '80vw', marginLeft: 'auto', marginRight: 'auto' }}>
         <Box sx={{ marginBottom: '145px' }}>
           <TabContext value={selectedTab}>
             <Box
               sx={{
                 borderBottom: 1,
                 borderColor: 'divider',
-                maxWidth: '1000px',
                 minWidth: '700px',
               }}
             >
@@ -90,12 +90,12 @@ function App() {
                 </Typography>
                 <MarketValueChangesTable />
               </Paper>
-              {/* Re-enable when matchdays start
               <Paper sx={{ marginTop: '25px' }} elevation={5}>
-                <Typography variant="h4" sx={{ padding: '15px' }}>Teamwert</Typography>
+                <Typography variant="h4" sx={{ padding: '15px' }}>
+                  Teamwert
+                </Typography>
                 <TeamValueLineChart darkModeEnabled={darkModeEnabled} />
               </Paper>
-              */}
               <Paper sx={{ marginTop: '25px' }} elevation={5}>
                 <Typography variant="h4" sx={{ padding: '15px' }}>
                   Aufstellungs Planer{' '}
