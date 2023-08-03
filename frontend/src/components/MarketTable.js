@@ -130,11 +130,10 @@ function MarketTable() {
         autoHeight
         rows={rows}
         columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        showQuickFilter
+        pageSizeOptions={[10, 20, 50]}
         initialState={{
           sorting: { sortModel: [{ field: 'date', sort: 'asc' }] },
+          pagination: { paginationModel: { page: 1, pageSize: 10 } },
         }}
         slots={{
           toolbar: CustomToolBar,

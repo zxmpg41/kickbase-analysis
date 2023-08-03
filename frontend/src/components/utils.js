@@ -10,7 +10,7 @@ export const getRelativeTime = (date) => {
 
 export const CustomToolBar = () => (
   <GridToolbarContainer
-    sx={{ display: 'flex', width: '100%', justifyContent: 'start' }}
+    sx={{ display: 'flex', width: '100%', justifyContent: 'start', pl: 2 }}
   >
     <GridToolbarQuickFilter debounceMs={500} />
   </GridToolbarContainer>

@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { currencyFormatter } from './SharedConstants'
 
 import data from '../data/turnovers.json'
+import { CustomToolBar } from './utils'
 
 function TurnoversTable() {
   const columns = [
@@ -100,10 +101,13 @@ function TurnoversTable() {
       autoHeight
       rows={rows}
       columns={columns}
-      pageSize={10}
-      rowsPerPageOptions={[10]}
+      pageSizeOptions={[10, 20, 50]}
       initialState={{
         sorting: { sortModel: [{ field: 'date', sort: 'desc' }] },
+        pagination: { paginationModel: { page: 1, pageSize: 10 } },
+      }}
+      slots={{
+        toolbar: CustomToolBar,
       }}
     />
   )
