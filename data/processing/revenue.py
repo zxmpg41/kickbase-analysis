@@ -5,7 +5,7 @@ from dateutil import parser
 
 from utility.constants import MATCH_DAYS
 from utility.constants import TIMEZONE_DE
-
+from utility.constants import CUTOFF_DATE
 
 def calculate_revenue_data_daily(manager, turnovers):
     user_transfer_revenue = {user.name: [] for user in manager.users}
@@ -15,7 +15,7 @@ def calculate_revenue_data_daily(manager, turnovers):
 
     # Add start and end points
     for _, data in user_transfer_revenue.items():
-        data.append((0, datetime(2023, 7, 1, tzinfo=TIMEZONE_DE)))
+        data.append((0, CUTOFF_DATE))
         data.append((0, datetime.now(TIMEZONE_DE)))
 
     dataframes = {}

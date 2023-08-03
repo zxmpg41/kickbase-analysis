@@ -1,6 +1,7 @@
 import time
 
 from kickbase_api.kickbase import Kickbase
+from utility.constants import CUTOFF_DATE_STRING
 
 
 class ApiManager:
@@ -37,8 +38,19 @@ class ApiManager:
         response = self.get(f'/leagues/{league_id}/users/{user_id}/feed?filter=12&start={offset}')
 
         while response['items']:
-            transfers_raw = transfers_raw + response['items']
-            response = self.get(f'/leagues/{league_id}/users/{user_id}/feed?filter=12&start={offset}')
-            offset += 25
+            #Append all valid items
+            for item in response['items']:
+                if 'date' in item and item['date'] >= CUTOFF_DATE_STRING:
+                    transfers_raw.append(item)
+                else:
+                    # Abort the loop when an item has a date property before cutoffDate
+                    break
+            else:
+                 # If the loop did not break, fetch the next response
+                offset += 25
+                response = self.get(f'/leagues/{league_id}/users/{user_id}/feed?filter=12&start={offset}')
+                continue
+
+            break
 
         return transfers_raw

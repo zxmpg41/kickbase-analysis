@@ -16,7 +16,7 @@ def get_taken_players(manager, user_id: int, user_name: str):
     for player in manager.api.league_user_players(manager.league, user_id):
         # Default values in case the player got randomly assigned on league join
         buy_value = 0
-        bought_date = datetime(2023, 7, 1, tzinfo=pytz.timezone('Europe/Berlin'))
+        bought_date = constants.CUTOFF_DATE
 
         # Get date and value of newest buy transfer for that player
         for transfer in transfers:

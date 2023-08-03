@@ -28,5 +28,8 @@ TEAM_IDS = [2, 3, 4, 5, 7, 9, 10, 11, 13, 14, 15, 18, 24, 28, 40, 42, 43, 50]
 
 POSITIONS = {1: 'TW', 2: 'ABW', 3: 'MF', 4: 'ANG'}
 
+CUTOFF_DATE = datetime(2023, 8, 1, tzinfo=TIMEZONE_DE)
+CUTOFF_DATE_STRING = '2023-07-31T22:00:00.000Z'
+
 MATCH_DAYS = {1: datetime(2023, 8, 18, 20, 30, tzinfo=TIMEZONE_DE),
               2: datetime(2023, 8, 25, 20, 30, tzinfo=TIMEZONE_DE)}

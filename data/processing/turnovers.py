@@ -3,6 +3,7 @@ from datetime import datetime
 from dateutil import parser
 
 from utility.constants import TIMEZONE_DE
+from utility.constants import CUTOFF_DATE
 
 
 def get_turnovers(manager, user_id: int, user_name: str):
@@ -53,8 +54,8 @@ def get_turnovers(manager, user_id: int, user_name: str):
             continue
 
         if transfer not in [turnover[1] for turnover in turnovers]:
-            date = datetime(2023, 7, 1, tzinfo=TIMEZONE_DE)
-            buy_transfer = {'date': date,
+            # date = constants.CUTOFF_DATE
+            buy_transfer = {'date': transfer['date'],
                             'first_name': transfer['first_name'],
                             'last_name': transfer['last_name'],
                             'value': transfer['value'],
