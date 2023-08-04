@@ -239,7 +239,7 @@ function LineupPlanner() {
         slots={{
           toolbar: CustomToolBar,
         }}
-        onSelectionModelChange={(s) => {
+        onRowSelectionModelChange={(s) => {
           setSelection(s)
         }}
       />
