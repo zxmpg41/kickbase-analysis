@@ -82,6 +82,13 @@ function MarketValueChangesTable() {
         else return 'font-tabular-nums'
       },
     },
+    {
+      field: 'manager',
+      headerName: 'Manager',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 2,
+    },
   ]
 
   const rows = data.map((row, i) => ({
@@ -93,6 +100,7 @@ function MarketValueChangesTable() {
     twoDaysAgo: row.two_days_ago,
     threeDaysAgo: row.three_days_ago,
     marketValue: row.market_value,
+    manager: row.manager,
   }))
 
   return (

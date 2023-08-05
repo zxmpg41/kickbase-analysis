@@ -12,9 +12,13 @@ import Paper from '@mui/material/Paper'
 import { trendIcons, currencyFormatter } from './SharedConstants'
 
 import data from '../data/taken_players.json'
+import users from '../data/users.json'
 import { CustomToolBar } from './utils'
+import Cookies from 'js-cookie'
 
 function LineupPlanner() {
+  const user = Cookies.get('user')
+  const userData = users.find((ele) => ele.name.toLowerCase() === user)
   const managers = [...new Set(data.map((item) => item.user))]
 
   const [manager, setManager] = useState(managers[0])
@@ -145,17 +149,20 @@ function LineupPlanner() {
     trend: row.trend,
   }))
 
+  const onChange = (e) => {
+    setManager(e.target.value)
+    if (e.target.value.toLowerCase() === user) {
+      setBalance(userData.budget)
+    }
+  }
+
   return (
     <>
       <Grid container justifyContent="center">
         <Grid item>
           <FormControl sx={{ margin: 1 }}>
             <InputLabel>Manager</InputLabel>
-            <Select
-              value={manager}
-              label="Manager"
-              onChange={(e) => setManager(e.target.value)}
-            >
+            <Select value={manager} label="Manager" onChange={onChange}>
               {managers.map((e) => (
                 <MenuItem key={e} value={e}>
                   {e}

@@ -9,10 +9,13 @@ import mw_changes from '../data/mw_changes.json'
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CancelIcon from '@mui/icons-material/Cancel'
+import Cookies from 'js-cookie'
 
 data = data.filter((entry) => new Date(entry.expiration) - new Date() > 0)
 
 function MarketTable() {
+  const user = Cookies.get('user')
+
   const columns = [
     {
       field: 'teamLogo',
@@ -113,13 +116,6 @@ function MarketTable() {
       headerAlign: 'right',
       align: 'right',
       renderCell: ({ formattedValue }) => {
-        // return (
-        //   <Box>
-        //     <Tooltip title={formattedValue.name} arrow>
-        //       {currencyFormatter.format(Number(formattedValue.value))}
-        //     </Tooltip>
-        //   </Box>
-        // )
         const style = {
           backgroundImage: 'linear-gradient(white, white)',
           borderRadius: '50%',
@@ -143,7 +139,10 @@ function MarketTable() {
               },
             }}
           >
-            <Tooltip title="Angebot abgegeben (Kevin)" arrow>
+            <Tooltip
+              title={currencyFormatter.format(Number(formattedValue.value))}
+              arrow
+            >
               {content}
             </Tooltip>
           </Box>
@@ -173,7 +172,7 @@ function MarketTable() {
       date: new Date(row.expiration),
       points: row.points,
       averagePoints: row.averagePoints,
-      offer: { value: row.offerValue, name: row.offerName },
+      offer: user === 'kevin' && { value: row.offerValue, name: row.offerName },
     }
   })
 
@@ -193,9 +192,9 @@ function MarketTable() {
         initialState={{
           sorting: { sortModel: [{ field: 'date', sort: 'asc' }] },
           pagination: { paginationModel: { page: 0, pageSize: 10 } },
-          columnVisibilityModel: {
-            offer: false,
-          },
+        }}
+        columnVisibilityModel={{
+          offer: user === 'kevin',
         }}
         slots={{
           toolbar: CustomToolBar,

@@ -31,7 +31,7 @@ function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState(Cookie.get('darkMode'))
 
   const changeTheme = (e) => {
-    Cookie.set('darkMode', e.target.checked)
+    Cookie.set('darkMode', e.target.checked, { expires: 365 })
     setDarkModeEnabled(e.target.checked)
   }
 
