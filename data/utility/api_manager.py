@@ -1,4 +1,5 @@
 import time
+import json
 
 from kickbase_api.kickbase import Kickbase
 from utility.constants import CUTOFF_DATE_STRING
@@ -19,6 +20,16 @@ class ApiManager:
         self.league = leagues[0]  # Might need to be set manually if account is in multiple leagues/challenges
         self.users = [user for user in self.api.league_users(self.league)
                       if user.name not in args.ignore]
+        
+        # Write a file for the users
+        userData = []
+        for user in self.users:
+             userData.append({'id': user.id,
+                             'name': user.name,
+                             'budget': user.budget if hasattr(user, "budget") else None})
+
+        with open('users.json', 'w') as f:
+            f.writelines(json.dumps(userData))
 
     # Simple caching and throttle of GETs to reduce load on server
     def get(self, endpoint: str):
