@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { trendIcons, currencyFormatter } from './SharedConstants'
+import { currencyFormatter } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import { CustomToolBar, ValueChangeTooltip } from './utils'
