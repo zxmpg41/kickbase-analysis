@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { trendIcons, currencyFormatter } from './SharedConstants'
 
 import data from '../data/taken_players.json'
-import { CustomToolBar } from './utils'
+import { CustomToolBar, ValueChangeTooltip } from './utils'
 
 function TakenPlayersTable() {
   const columns = [
@@ -55,7 +55,14 @@ function TakenPlayersTable() {
       flex: 1,
       headerAlign: 'center',
       align: 'center',
-      renderCell: (params) => trendIcons[params.value],
+      renderCell: (params) => {
+        return (
+          <ValueChangeTooltip
+            trend={params.value}
+            playerId={params.row.playerId}
+          />
+        )
+      },
     },
     {
       field: 'turnover',
@@ -77,6 +84,7 @@ function TakenPlayersTable() {
 
   const rows = data.map((row, i) => ({
     id: i,
+    playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
     firstName: row.first_name,
     lastName: row.last_name,

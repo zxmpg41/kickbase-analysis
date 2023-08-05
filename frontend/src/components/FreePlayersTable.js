@@ -1,9 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { trendIcons, currencyFormatter } from './SharedConstants'
+import { currencyFormatter } from './SharedConstants'
 
 import data from '../data/free_players.json'
-import { CustomToolBar } from './utils'
+import { CustomToolBar, ValueChangeTooltip } from './utils'
 
 function FreePlayersTable() {
   const columns = [
@@ -53,7 +53,14 @@ function FreePlayersTable() {
       flex: 1,
       headerAlign: 'center',
       align: 'center',
-      renderCell: (params) => trendIcons[params.value],
+      renderCell: (params) => {
+        return (
+          <ValueChangeTooltip
+            trend={params.value}
+            playerId={params.row.playerId}
+          />
+        )
+      },
     },
     {
       field: 'points',
@@ -65,6 +72,7 @@ function FreePlayersTable() {
 
   const rows = data.map((row, i) => ({
     id: i,
+    playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
     firstName: row.first_name,
     lastName: row.last_name,

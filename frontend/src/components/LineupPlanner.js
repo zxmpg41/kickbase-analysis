@@ -9,11 +9,11 @@ import Grid from '@mui/material/Grid'
 import { NumericFormat } from 'react-number-format'
 import Paper from '@mui/material/Paper'
 
-import { trendIcons, currencyFormatter } from './SharedConstants'
+import { currencyFormatter } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import users from '../data/users.json'
-import { CustomToolBar } from './utils'
+import { CustomToolBar, ValueChangeTooltip } from './utils'
 import Cookies from 'js-cookie'
 
 function LineupPlanner() {
@@ -129,7 +129,14 @@ function LineupPlanner() {
       flex: 1,
       headerAlign: 'center',
       align: 'center',
-      renderCell: (params) => trendIcons[params.value],
+      renderCell: (params) => {
+        return (
+          <ValueChangeTooltip
+            trend={params.value}
+            playerId={params.row.playerId}
+          />
+        )
+      },
     },
     {
       ...GRID_CHECKBOX_SELECTION_COL_DEF,
@@ -138,6 +145,7 @@ function LineupPlanner() {
 
   const rows = filteredData.map((row, i) => ({
     id: row.player_id,
+    playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
     position: row.position,
     firstName: row.first_name,
