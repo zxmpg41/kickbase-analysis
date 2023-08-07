@@ -1,7 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid'
 import { Box, Tooltip } from '@mui/material'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 import { CustomToolBar, getRelativeTime } from './utils'
 
 import data from '../data/market.json'
@@ -26,6 +26,9 @@ function MarketTable() {
       renderCell: (params) => (
         <img src={params.value} alt={params.value} width="40" />
       ),
+    },
+    {
+      field: 'teamName',
     },
     {
       field: 'position',
@@ -172,6 +175,7 @@ function MarketTable() {
     return {
       id: i,
       teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+      teamName: teamNames[row.team_id],
       position: row.position,
       lastName: row.last_name,
       price: row.price,
@@ -204,6 +208,7 @@ function MarketTable() {
         }}
         columnVisibilityModel={{
           offer: user === 'kevin',
+          teamName: false,
         }}
         slots={{
           toolbar: CustomToolBar,

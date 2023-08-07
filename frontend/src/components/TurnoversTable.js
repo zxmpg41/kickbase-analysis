@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 
 import data from '../data/turnovers.json'
 import { CustomToolBar } from './utils'
@@ -16,6 +16,9 @@ function TurnoversTable() {
       renderCell: (params) => (
         <img src={params.value} alt={params.value} width="40" />
       ),
+    },
+    {
+      field: 'teamName',
     },
     {
       field: 'firstName',
@@ -93,6 +96,7 @@ function TurnoversTable() {
   const rows = data.map((row, i) => ({
     id: i,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row[1].team_id + '.png',
+    teamName: teamNames[row[1].team_id],
     firstName: row[1].first_name,
     lastName: row[1].last_name,
     buyPrice: row[0].value,
@@ -113,6 +117,9 @@ function TurnoversTable() {
       initialState={{
         sorting: { sortModel: [{ field: 'date', sort: 'desc' }] },
         pagination: { paginationModel: { page: 0, pageSize: 10 } },
+      }}
+      columnVisibilityModel={{
+        teamName: false,
       }}
       slots={{
         toolbar: CustomToolBar,

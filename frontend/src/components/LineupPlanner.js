@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid'
 import { NumericFormat } from 'react-number-format'
 import Paper from '@mui/material/Paper'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import users from '../data/users.json'
@@ -85,6 +85,9 @@ function LineupPlanner() {
       ),
     },
     {
+      field: 'teamName',
+    },
+    {
       field: 'position',
       headerName: 'Position',
       headerAlign: 'center',
@@ -153,6 +156,7 @@ function LineupPlanner() {
     id: row.player_id,
     playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamName: teamNames[row.team_id],
     position: row.position,
     firstName: row.first_name,
     lastName: row.last_name,
@@ -256,6 +260,9 @@ function LineupPlanner() {
         initialState={{
           sorting: { sortModel: [{ field: 'marketValue', sort: 'desc' }] },
           pagination: { paginationModel: { page: 0, pageSize: 18 } },
+        }}
+        columnVisibilityModel={{
+          teamName: false,
         }}
         slots={{
           toolbar: CustomToolBar,

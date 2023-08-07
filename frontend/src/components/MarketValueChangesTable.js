@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 import { CustomToolBar } from './utils'
 import { Box } from '@mui/material'
 import data from '../data/mw_changes.json'
@@ -16,6 +16,9 @@ function MarketValueChangesTable() {
       renderCell: (params) => (
         <img src={params.value} alt={params.value} width="40" />
       ),
+    },
+    {
+      field: 'teamName',
     },
     {
       field: 'firstName',
@@ -101,6 +104,7 @@ function MarketValueChangesTable() {
   const rows = data.map((row, i) => ({
     id: i,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamName: teamNames[row.team_id],
     firstName: row.first_name,
     lastName: row.last_name,
     oneDayAgo: row.one_day_ago,
@@ -126,6 +130,9 @@ function MarketValueChangesTable() {
         initialState={{
           sorting: { sortModel: [{ field: 'oneDayAgo', sort: 'desc' }] },
           pagination: { paginationModel: { page: 0, pageSize: 10 } },
+        }}
+        columnVisibilityModel={{
+          teamName: false,
         }}
         slots={{
           toolbar: CustomToolBar,

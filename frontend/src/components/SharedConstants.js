@@ -24,3 +24,26 @@ export const minWidths = {
   small: 60,
   medium: 130,
 }
+
+export const teamNames = {
+  2: 'Bayern München',
+  3: 'Borussia Dortmund',
+  4: 'Eintracht Frankfurt',
+  5: 'SC Freiburg',
+  7: 'Bayer Leverkusen 04',
+  8: 'Schalke 04',
+  9: 'VfB Stuttgart',
+  10: 'Werder Bremen',
+  11: 'VfL Wolfsburg',
+  13: 'FC Augsburg',
+  14: 'TSG Hoffenheim',
+  15: 'Borussia Mönchengladbach',
+  18: 'FSV Mainz 05',
+  20: 'Herta BSC Berlin',
+  24: 'VfL Bochum',
+  28: 'FC Köln',
+  40: 'FC Union Berlin',
+  42: 'SV Darmstadt 98',
+  43: 'RB Leipzig',
+  50: 'FC Heidenheim',
+}

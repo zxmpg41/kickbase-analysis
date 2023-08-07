@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import { CustomToolBar, ValueChangeTooltip } from './utils'
@@ -16,6 +16,9 @@ function TakenPlayersTable() {
       renderCell: (params) => (
         <img src={params.value} alt={params.value} width="40" />
       ),
+    },
+    {
+      field: 'teamName',
     },
     {
       field: 'position',
@@ -101,6 +104,7 @@ function TakenPlayersTable() {
     id: i,
     playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamName: teamNames[row.team_id],
     firstName: row.first_name,
     lastName: row.last_name,
     buyPrice: row.buy_price === 0 ? row.market_value : row.buy_price,
@@ -121,6 +125,9 @@ function TakenPlayersTable() {
       initialState={{
         sorting: { sortModel: [{ field: 'turnover', sort: 'desc' }] },
         pagination: { paginationModel: { page: 0, pageSize: 10 } },
+      }}
+      columnVisibilityModel={{
+        teamName: false,
       }}
       slots={{
         toolbar: CustomToolBar,

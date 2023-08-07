@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter, minWidths } from './SharedConstants'
+import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 
 import data from '../data/free_players.json'
 import { CustomToolBar, ValueChangeTooltip } from './utils'
@@ -16,6 +16,9 @@ function FreePlayersTable() {
       renderCell: (params) => (
         <img src={params.value} alt={params.value} width="40" />
       ),
+    },
+    {
+      field: 'teamName',
     },
     {
       field: 'position',
@@ -79,6 +82,7 @@ function FreePlayersTable() {
     id: i,
     playerId: row.player_id,
     teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamName: teamNames[row.team_id],
     firstName: row.first_name,
     lastName: row.last_name,
     marketValue: row.market_value,
@@ -97,6 +101,9 @@ function FreePlayersTable() {
       initialState={{
         sorting: { sortModel: [{ field: 'marketValue', sort: 'desc' }] },
         pagination: { paginationModel: { page: 0, pageSize: 10 } },
+      }}
+      columnVisibilityModel={{
+        teamName: false,
       }}
       slots={{
         toolbar: CustomToolBar,
