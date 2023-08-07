@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 
 import data from '../data/free_players.json'
 import { CustomToolBar, ValueChangeTooltip } from './utils'
@@ -23,6 +23,7 @@ function FreePlayersTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: minWidths.small,
     },
     {
       field: 'firstName',
@@ -30,6 +31,7 @@ function FreePlayersTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'lastName',
@@ -37,12 +39,14 @@ function FreePlayersTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'marketValue',
       headerName: 'Marktwert',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -51,6 +55,7 @@ function FreePlayersTable() {
       field: 'trend',
       headerName: 'Trend',
       flex: 1,
+      minWidth: minWidths.small,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {

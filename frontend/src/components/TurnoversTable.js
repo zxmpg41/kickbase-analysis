@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 
 import data from '../data/turnovers.json'
 import { CustomToolBar } from './utils'
@@ -23,6 +23,7 @@ function TurnoversTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'lastName',
@@ -30,12 +31,14 @@ function TurnoversTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'buyPrice',
       headerName: 'Kaufpreis',
       type: 'number',
       flex: 3,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -45,6 +48,7 @@ function TurnoversTable() {
       headerName: 'Verkaufspreis',
       type: 'number',
       flex: 3,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -54,6 +58,7 @@ function TurnoversTable() {
       headerName: 'Gewinn/Verlust',
       type: 'number',
       flex: 3,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -64,6 +69,7 @@ function TurnoversTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'buyer',
@@ -71,6 +77,7 @@ function TurnoversTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'date',
@@ -79,6 +86,7 @@ function TurnoversTable() {
       align: 'center',
       valueFormatter: ({ value }) => new Date(value).toLocaleDateString(),
       flex: 2,
+      minWidth: minWidths.medium,
     },
   ]
 

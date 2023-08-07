@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid'
 import { NumericFormat } from 'react-number-format'
 import Paper from '@mui/material/Paper'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import users from '../data/users.json'
@@ -90,6 +90,7 @@ function LineupPlanner() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: minWidths.small,
     },
     {
       field: 'firstName',
@@ -97,6 +98,7 @@ function LineupPlanner() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'lastName',
@@ -104,12 +106,14 @@ function LineupPlanner() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'buyPrice',
       headerName: 'Kaufpreis',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -119,6 +123,7 @@ function LineupPlanner() {
       headerName: 'Marktwert',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -127,6 +132,7 @@ function LineupPlanner() {
       field: 'trend',
       headerName: 'Trend',
       flex: 1,
+      minWidth: minWidths.small,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {

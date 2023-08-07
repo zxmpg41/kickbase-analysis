@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 import { CustomToolBar } from './utils'
 import { Box } from '@mui/material'
 import data from '../data/mw_changes.json'
@@ -23,6 +23,7 @@ function MarketValueChangesTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'lastName',
@@ -30,12 +31,14 @@ function MarketValueChangesTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'marketValue',
       headerName: 'Marktwert',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -45,6 +48,7 @@ function MarketValueChangesTable() {
       headerName: 'Heute',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -59,6 +63,7 @@ function MarketValueChangesTable() {
       headerName: 'Gestern',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -73,6 +78,7 @@ function MarketValueChangesTable() {
       headerName: 'Vorgestern',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -88,6 +94,7 @@ function MarketValueChangesTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
   ]
 

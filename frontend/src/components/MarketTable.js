@@ -1,7 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid'
 import { Box, Tooltip } from '@mui/material'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 import { CustomToolBar, getRelativeTime } from './utils'
 
 import data from '../data/market.json'
@@ -33,6 +33,7 @@ function MarketTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: minWidths.small,
     },
     {
       field: 'lastName',
@@ -40,6 +41,7 @@ function MarketTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: minWidths.medium,
     },
     {
       field: 'points',
@@ -47,6 +49,7 @@ function MarketTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: minWidths.medium,
       valueGetter: ({ row }) =>
         `${row.averagePoints} / ${row.points.toLocaleString('de')}`,
     },
@@ -58,12 +61,14 @@ function MarketTable() {
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
+      minWidth: minWidths.medium,
     },
     {
       field: 'oneDayAgo',
       headerName: 'Heute',
       type: 'number',
       flex: 1,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -78,6 +83,7 @@ function MarketTable() {
       headerName: 'Gestern',
       type: 'number',
       flex: 1,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -92,6 +98,7 @@ function MarketTable() {
       headerName: 'Vorgestern',
       type: 'number',
       flex: 1,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: (params) => {
@@ -105,6 +112,7 @@ function MarketTable() {
       field: 'date',
       headerName: 'Ablaufdatum',
       flex: 2,
+      minWidth: minWidths.medium,
       headerAlign: 'center',
       align: 'right',
       valueFormatter: ({ value }) => getRelativeTime(value),
@@ -113,6 +121,7 @@ function MarketTable() {
       field: 'offer',
       headerName: 'Angebot',
       flex: 1,
+      minWidth: minWidths.small,
       headerAlign: 'right',
       align: 'right',
       renderCell: ({ formattedValue }) => {

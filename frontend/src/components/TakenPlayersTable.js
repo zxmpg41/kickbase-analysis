@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid'
 
-import { currencyFormatter } from './SharedConstants'
+import { currencyFormatter, minWidths } from './SharedConstants'
 
 import data from '../data/taken_players.json'
 import { CustomToolBar, ValueChangeTooltip } from './utils'
@@ -18,11 +18,20 @@ function TakenPlayersTable() {
       ),
     },
     {
+      field: 'position',
+      headerName: 'Position',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
+      minWidth: minWidths.small,
+    },
+    {
       field: 'firstName',
       headerName: 'Vorname',
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'lastName',
@@ -30,12 +39,14 @@ function TakenPlayersTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
     {
       field: 'buyPrice',
       headerName: 'Kaufpreis',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -45,6 +56,7 @@ function TakenPlayersTable() {
       headerName: 'Marktwert',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -53,6 +65,7 @@ function TakenPlayersTable() {
       field: 'trend',
       headerName: 'Trend',
       flex: 1,
+      minWidth: minWidths.small,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
@@ -69,6 +82,7 @@ function TakenPlayersTable() {
       headerName: 'Gewinn/Verlust',
       type: 'number',
       flex: 2,
+      minWidth: minWidths.medium,
       valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
       headerAlign: 'center',
       cellClassName: 'font-tabular-nums',
@@ -79,6 +93,7 @@ function TakenPlayersTable() {
       headerAlign: 'center',
       align: 'center',
       flex: 2,
+      minWidth: minWidths.medium,
     },
   ]
 
@@ -93,6 +108,7 @@ function TakenPlayersTable() {
     turnover: row.buy_price === 0 ? 0 : row.market_value - row.buy_price,
     manager: row.user,
     trend: row.trend,
+    position: row.position,
   }))
 
   return (

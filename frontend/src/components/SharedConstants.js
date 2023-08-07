@@ -19,3 +19,8 @@ export const nivoLightTheme = {}
 export const nivoDarkTheme = {
   textColor: '#fff',
 }
+
+export const minWidths = {
+  small: 60,
+  medium: 130,
+}
