@@ -5,8 +5,6 @@ name: combined workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches: ['develop']
   schedule:
     - cron: '15 8/12 * * *'
 
