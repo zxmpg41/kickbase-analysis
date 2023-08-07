@@ -57,6 +57,20 @@ function MarketTable() {
         `${row.averagePoints} / ${row.points.toLocaleString('de')}`,
     },
     {
+      field: 'effective',
+      headerName: '€ / Ø',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
+      minWidth: minWidths.medium,
+      valueGetter: ({ row }) => {
+        if (row.averagePoints === 0) {
+          return '0'
+        }
+        return currencyFormatter.format(Number(row.price / row.averagePoints))
+      },
+    },
+    {
       field: 'price',
       headerName: 'Preis',
       type: 'number',
