@@ -47,6 +47,20 @@ function MarketValueChangesTable() {
       cellClassName: 'font-tabular-nums',
     },
     {
+      field: 'averagePoints',
+      headerName: '€ / Ø',
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
+      minWidth: minWidths.medium,
+      valueGetter: ({ row }) => {
+        if (row.value === 0) {
+          return '0'
+        }
+        return currencyFormatter.format(Number(row.price / row.value))
+      },
+    },
+    {
       field: 'oneDayAgo',
       headerName: 'Heute',
       type: 'number',
@@ -112,6 +126,7 @@ function MarketValueChangesTable() {
     threeDaysAgo: row.three_days_ago,
     marketValue: row.market_value,
     manager: row.manager,
+    averagePoints: row.averagePoints,
   }))
 
   return (

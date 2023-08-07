@@ -57,7 +57,8 @@ def get_free_players(manager, taken_players):
                                      'points': player.totalPoints,
                                      'team_id': player.team_id,
                                      'position': constants.POSITIONS[player.position],
-                                     'trend': player.market_value_trend})
+                                     'trend': player.market_value_trend,
+                                     'averagePoints': player.averagePoints,})
 
     return free_players
 
