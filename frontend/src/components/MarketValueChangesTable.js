@@ -54,10 +54,12 @@ function MarketValueChangesTable() {
       flex: 1,
       minWidth: minWidths.medium,
       valueGetter: ({ row }) => {
-        if (row.value === 0) {
+        if (row.averagePoints === 0) {
           return '0'
         }
-        return currencyFormatter.format(Number(row.price / row.value))
+        return currencyFormatter.format(
+          Number(row.marketValue / row.averagePoints)
+        )
       },
     },
     {

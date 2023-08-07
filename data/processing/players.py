@@ -88,7 +88,8 @@ def get_player_data(manager, team_id):
                              'two_days_ago': last_mw[1] - last_mw[2],
                              'three_days_ago': last_mw[2] - last_mw[3],
                              'team_id': player.team_id,
-                             'manager': manager_name})
+                             'manager': manager_name,
+                             'averagePoints': player.averagePoints})
 
     return players_data
 
