@@ -31,7 +31,7 @@ function TransferRevenueLineChart(props) {
         yScale={{
           type: 'linear',
           stacked: false,
-          min: -100000,
+          min: -1500000,
         }}
         yFormat={(value) =>
           `${new Intl.NumberFormat('de-DE', {
