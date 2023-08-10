@@ -155,7 +155,7 @@ function LineupPlanner() {
   const rows = filteredData.map((row, i) => ({
     id: row.player_id,
     playerId: row.player_id,
-    teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamLogo: import.meta.env.BASE_URL + '/images/' + row.team_id + '.png',
     teamName: teamNames[row.team_id],
     position: row.position,
     firstName: row.first_name,

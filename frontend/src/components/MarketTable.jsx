@@ -4,14 +4,16 @@ import { Box, Tooltip } from '@mui/material'
 import { currencyFormatter, minWidths, teamNames } from './SharedConstants'
 import { CustomToolBar, getRelativeTime } from './utils'
 
-import data from '../data/market.json'
+import market_data from '../data/market.json'
 import mw_changes from '../data/mw_changes.json'
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CancelIcon from '@mui/icons-material/Cancel'
 import Cookies from 'js-cookie'
 
-data = data.filter((entry) => new Date(entry.expiration) - new Date() > 0)
+const data = market_data.filter(
+  (entry) => new Date(entry.expiration) - new Date() > 0
+)
 
 function MarketTable() {
   const user = Cookies.get('user')
@@ -188,7 +190,7 @@ function MarketTable() {
     const previousValues = getPreviousValues(row.player_id)
     return {
       id: i,
-      teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+      teamLogo: import.meta.env.BASE_URL + '/images/' + row.team_id + '.png',
       teamName: teamNames[row.team_id],
       position: row.position,
       lastName: row.last_name,

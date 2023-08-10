@@ -95,7 +95,7 @@ function TurnoversTable() {
 
   const rows = data.map((row, i) => ({
     id: i,
-    teamLogo: process.env.PUBLIC_URL + '/images/' + row[1].team_id + '.png',
+    teamLogo: import.meta.env.BASE_URL + '/images/' + row[1].team_id + '.png',
     teamName: teamNames[row[1].team_id],
     firstName: row[1].first_name,
     lastName: row[1].last_name,

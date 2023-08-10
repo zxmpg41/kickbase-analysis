@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import Box from '@mui/material/Box'
-import Tab from '@mui/material/Tab'
+import { Box, Tab, CssBaseline } from '@mui/material'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Grid from '@mui/material/Grid'
@@ -70,7 +68,7 @@ function App() {
                   <FormControlLabel
                     control={
                       <Switch
-                        checked={darkModeEnabled}
+                        checked={!!darkModeEnabled}
                         onChange={changeTheme}
                       />
                     }

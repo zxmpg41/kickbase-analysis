@@ -6,7 +6,8 @@ import { Tooltip, Box } from '@mui/material'
 import { currencyFormatter, trendIcons } from './SharedConstants'
 
 export const getRelativeTime = (date) => {
-  TimeAgo.addDefaultLocale(de)
+  TimeAgo.setDefaultLocale(de.locale)
+  TimeAgo.addLocale(de)
   const timeAgo = new TimeAgo('de-DE')
   return timeAgo.format(new Date(date), 'round')
 }

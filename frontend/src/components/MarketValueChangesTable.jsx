@@ -119,7 +119,7 @@ function MarketValueChangesTable() {
 
   const rows = data.map((row, i) => ({
     id: i,
-    teamLogo: process.env.PUBLIC_URL + '/images/' + row.team_id + '.png',
+    teamLogo: import.meta.env.BASE_URL + '/images/' + row.team_id + '.png',
     teamName: teamNames[row.team_id],
     firstName: row.first_name,
     lastName: row.last_name,
