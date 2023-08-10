@@ -9,8 +9,6 @@ class ApiManager:
     def __init__(self, args):
         # Query cache
         self.executed_queries = {}
-        self.last_call_timestamp = 0
-        self.throttle_seconds = .1
 
         # Login
         self.api = Kickbase()
@@ -31,14 +29,10 @@ class ApiManager:
         with open('users.json', 'w') as f:
             f.writelines(json.dumps(userData))
 
-    # Simple caching and throttle of GETs to reduce load on server
+    # Simple caching
     def get(self, endpoint: str):
         if endpoint not in self.executed_queries:
-            while time.time() - self.last_call_timestamp < self.throttle_seconds:
-                time.sleep(.1)
-
             self.executed_queries[endpoint] = self.api._do_get(endpoint, True).json()
-            self.last_call_timestamp = time.time()
 
         return self.executed_queries[endpoint]
 

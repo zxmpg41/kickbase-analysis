@@ -69,5 +69,7 @@ def main():
     with open('timestamp.json', 'w') as f:
         f.writelines(json.dumps({'time': datetime.now(tz=tzlocal()).isoformat()}))
 
+    # Show query count
+    print(f"Numbers of queries executed : {len(manager.executed_queries)}")
 
 main()
