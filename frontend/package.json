@@ -30,6 +30,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "copy": "copyfiles ../data/*.json ./src/data/",
+    "start": "vite serve",
     "dev": "vite serve",
     "build": "vite build",
     "preview": "vite preview"
