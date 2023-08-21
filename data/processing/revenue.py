@@ -69,8 +69,7 @@ def calculate_team_value_per_match_day(manager, user_id: str):
                 for entry in player_stats['marketValues']:
                     if parser.parse(entry['d']).date() <= MATCH_DAYS[match_day].date():
                         player_value_on_match_day = int(entry['m'])
-                    else:
-                        break
+                        
 
             team_value[match_day] += player_value_on_match_day
 
