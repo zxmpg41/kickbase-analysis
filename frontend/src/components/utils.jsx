@@ -28,8 +28,14 @@ export const getPreviousValues = (playerId) => {
 }
 
 export const ValueChangeTooltip = ({ trend, playerId }) => {
-  const { one_day_ago, two_days_ago, three_days_ago } =
-    getPreviousValues(playerId)
+  //fix bug, when player in manager team leaves bundesliga
+  //user is then no longer on any bundesliga team -> no market data
+  //as market data loops over the squad of every team
+  const previousValues = getPreviousValues(playerId)
+  if (previousValues === undefined) {
+    return <Box>{trendIcons[trend]}</Box>
+  }
+  const { one_day_ago, two_days_ago, three_days_ago } = previousValues
   return (
     <Tooltip
       arrow
