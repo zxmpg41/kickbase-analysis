@@ -5,8 +5,8 @@ name: combined workflow
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 6/8 * * *'
+  #schedule:
+    #- cron: '0 6/8 * * *'
 
 jobs:
   combined-workflow:
